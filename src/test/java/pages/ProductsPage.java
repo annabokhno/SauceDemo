@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductsPage extends BasePage {
 
@@ -20,6 +21,10 @@ public class ProductsPage extends BasePage {
 
     public String getTitle() {
         return driver.findElement(TITLE).getText();
+    }
+
+    public void isPageOpened() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE));
     }
 
     public void addToCart(String product) {

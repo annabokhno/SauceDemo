@@ -4,9 +4,17 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 public class CartTest extends BaseTest {
 
-    @Test
+    @Test(
+            priority = 1,
+            description = "В корзине сохраняются выбранные товары",
+            testName = "Проверка корзины",
+            groups = {"smoke", "regression"}
+    )
     public void checkCart() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open();
@@ -19,8 +27,13 @@ public class CartTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    //НЕ РАБОТАЕТ!
-    @Test
+    //НЕ РАБОТАЕТ
+    @Test(
+            priority = 2,
+            description = "В корзине удаляются выбранные товары",
+            testName = "Проверка удаления товаров в корзине",
+            groups = {"regression"}
+    )
     public void checkRemoveItem() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open();
@@ -33,5 +46,19 @@ public class CartTest extends BaseTest {
         softAssert.assertEquals(driver.findElements(By.xpath("//*[text()='Sauce Labs Backpack']")).size(), 0);
         softAssert.assertEquals(driver.findElements(By.xpath("//*[text()='Sauce Labs Bike Light']")).size(), 0);
         softAssert.assertAll();
+    }
+
+    @Test(enabled = false)
+    public void checkCartTwo() {
+        SoftAssert softAssert = new SoftAssert();
+        loginPage.open();
+        loginPage.login("standard_user", "secret_sauce");
+        productsPage.addToCart("Sauce Labs Backpack");
+        productsPage.addToCart("Sauce Labs Bike Light");
+        productsPage.clickCart();
+
+        assertTrue(cartPage.isProductInCart("Sauce Labs Backpack"), "Baaaad");
+        assertEquals(cartPage.getProductNameFromCart(0), "Sauce Labs Backpack", "Baaaad");
+        assertTrue(cartPage.getProductName().contains("Sauce Labs Backpack"), "Baaaad");
     }
 }

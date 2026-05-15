@@ -5,7 +5,12 @@ import org.testng.annotations.Test;
 
 public class End2EndTest extends BaseTest {
 
-    @Test
+    @Test(
+            priority = 1,
+            description = "E2E сценарий",
+            testName = "End-to-End",
+            groups = {"smoke", "regression"}
+    )
     public void endToEnd() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
