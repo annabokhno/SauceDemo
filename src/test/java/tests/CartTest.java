@@ -27,7 +27,6 @@ public class CartTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    //НЕ РАБОТАЕТ
     @Test(
             priority = 2,
             description = "В корзине удаляются выбранные товары",
