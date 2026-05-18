@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2"
+       name="SauceDemo suite"
+       parallel="tests">
+
+    <listeners>
+        <listener class-name="tests.TestListener"/>
+    </listeners>
+
+    <test name="Thread Regression 1">
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.LoginTest"/>
+            <class name="tests.CartTest"/>
+        </classes>
+    </test>
+
+    <test name="Thread Regression 2">
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.CheckoutTest"/>
+            <class name="tests.End2EndTest"/>
+        </classes>
+    </test>
+</suite>
