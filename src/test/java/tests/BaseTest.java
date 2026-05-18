@@ -73,12 +73,4 @@ public class BaseTest {
         }
     }
 
-    //public LoginPage loginPage() {
-    //return loginPage.get();
-    //}
-
-    //public ProductsPage productsPage() {
-    //return loginPage.set();
-    //}
-
 }

@@ -3,6 +3,8 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class CheckoutTest extends BaseTest {
 
@@ -19,7 +21,7 @@ public class CheckoutTest extends BaseTest {
         productsPage.clickCart();
         cartPage.clickCheckout();
         checkoutPage.fillOutTheForm("Hanna", "Liasota", "12345");
-        Assert.assertEquals(checkoutOverviewPage.getTitleOverview(), "Checkout: Overview", "SO BAD");
+        assertEquals(checkoutOverviewPage.getTitleOverview(), "Checkout: Overview", "SO BAD");
     }
 
     @DataProvider(name = "параметризированный тест для проверки формы Checkout с негативными данными")
@@ -46,7 +48,7 @@ public class CheckoutTest extends BaseTest {
         productsPage.clickCart();
         cartPage.clickCheckout();
         checkoutPage.fillOutTheForm("", "", "");
-        Assert.assertEquals(checkoutPage.getErrorCheckoutMessage(), "Error: First Name is required");
+        assertEquals(checkoutPage.getErrorCheckoutMessage(), "Error: First Name is required");
     }
 
     @Test(
@@ -62,7 +64,7 @@ public class CheckoutTest extends BaseTest {
         productsPage.clickCart();
         cartPage.clickCheckout();
         checkoutPage.fillOutTheForm("Hanna", "Liasota", "12345");
-        Assert.assertTrue(checkoutOverviewPage.getSummaryInfo().contains("Payment Information"));
+        assertTrue(checkoutOverviewPage.getSummaryInfo().contains("Payment Information"));
         checkoutOverviewPage.clickFinishButton();
     }
 }

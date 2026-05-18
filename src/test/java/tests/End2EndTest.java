@@ -2,6 +2,7 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import static org.testng.Assert.assertEquals;
 
 public class End2EndTest extends BaseTest {
 
@@ -19,6 +20,6 @@ public class End2EndTest extends BaseTest {
         cartPage.clickCheckout();
         checkoutPage.fillOutTheForm("Hanna", "Liasota", "12345");
         checkoutOverviewPage.clickFinishButton();
-        Assert.assertEquals(completePage.getTitleCompletePage(), "Checkout: Complete!");
+        assertEquals(completePage.getTitleCompletePage(), "Checkout: Complete!");
     }
 }

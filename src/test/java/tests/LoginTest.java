@@ -3,6 +3,8 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends BaseTest {
 
@@ -16,7 +18,7 @@ public class LoginTest extends BaseTest {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.isPageOpened();
-        Assert.assertEquals(productsPage.getTitle(),
+        assertEquals(productsPage.getTitle(),
                 "Products",
                 "SO BAD");
     }
@@ -30,7 +32,7 @@ public class LoginTest extends BaseTest {
     public void chekLoginWithEmptyUserName() {
         loginPage.open();
         loginPage.login("", "secret_sauce");
-        Assert.assertEquals(loginPage.getErrorMessage(),
+        assertEquals(loginPage.getErrorMessage(),
                 "Epic sadface: Username is required");
     }
 
@@ -43,7 +45,7 @@ public class LoginTest extends BaseTest {
     public void chekLoginWithEmptyPassword() {
         loginPage.open();
         loginPage.login("standard_user", "");
-        Assert.assertEquals(loginPage.getErrorMessage(),
+        assertEquals(loginPage.getErrorMessage(),
                 "Epic sadface: Password is required",
                 "SO BAD");
     }
@@ -57,7 +59,7 @@ public class LoginTest extends BaseTest {
     public void chekLoginWithNegativeCred() {
         loginPage.open();
         loginPage.login("test", "test");
-        Assert.assertEquals(loginPage.getErrorMessage(),
+        assertEquals(loginPage.getErrorMessage(),
                 "Epic sadface: Username and password do not match any user in this service",
                 "SO BAAD");
     }
@@ -86,6 +88,6 @@ public class LoginTest extends BaseTest {
         productsPage.clickCart();
         cartPage.clickCheckout();
         checkoutPage.fillOutTheForm(first_name, last_name, zip);
-        Assert.assertEquals(checkoutPage.getErrorCheckoutMessage(), expectedError);
+        assertEquals(checkoutPage.getErrorCheckoutMessage(), expectedError);
     }
 }

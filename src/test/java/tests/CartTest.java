@@ -56,8 +56,9 @@ public class CartTest extends BaseTest {
         productsPage.addToCart("Sauce Labs Bike Light");
         productsPage.clickCart();
 
-        assertTrue(cartPage.isProductInCart("Sauce Labs Backpack"), "Baaaad");
-        assertEquals(cartPage.getProductNameFromCart(0), "Sauce Labs Backpack", "Baaaad");
-        assertTrue(cartPage.getProductName().contains("Sauce Labs Backpack"), "Baaaad");
+        softAssert.assertTrue(cartPage.isProductInCart("Sauce Labs Backpack"), "Baaaad");
+        softAssert.assertEquals(cartPage.getProductNameFromCart(0), "Sauce Labs Backpack", "Baaaad");
+        softAssert.assertTrue(cartPage.getProductName().contains("Sauce Labs Backpack"), "Baaaad");
+        softAssert.assertAll();
     }
 }
