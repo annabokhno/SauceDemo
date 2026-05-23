@@ -1,11 +1,16 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 public class LocatorsTest extends BaseTest {
 
     @Test
+    @Owner("Bokhno A.M.")
+    @Epic("Sauce Demo 1")
+    @Feature("Locators")
+    @Severity(SeverityLevel.NORMAL)
     public void checkCart() {
         driver.get("https://www.saucedemo.com/");
         driver.findElement(By.id("user-name")).sendKeys("standard_user");

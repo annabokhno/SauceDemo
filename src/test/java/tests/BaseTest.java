@@ -1,18 +1,20 @@
 package tests;
 
+import io.qameta.allure.testng.AllureTestNg;
 import listeners.TestListener;
 import org.jspecify.annotations.NonNull;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
 
 import java.time.Duration;
 import java.util.HashMap;
 
-@Listeners(TestListener.class)
+@Listeners({AllureTestNg.class, TestListener.class})
 public class BaseTest {
 
     protected WebDriver driver;
@@ -27,7 +29,7 @@ public class BaseTest {
 
     @BeforeMethod(alwaysRun = true, description = "Настройка драйвера")
     @Parameters({"browser"})
-    public void setup(@Optional("chrome") String browser) {
+    public void setup(@Optional("chrome") String browser, ITestContext iTestContext) {
 
         if (browser.equalsIgnoreCase("chrome")) {
 
@@ -39,6 +41,8 @@ public class BaseTest {
 
             driver = new FirefoxDriver();
         }
+
+        iTestContext.setAttribute("driver", driver);
 
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));

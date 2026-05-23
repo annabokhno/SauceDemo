@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -14,6 +15,16 @@ public class LoginTest extends BaseTest {
             testName = "Позитивный логин",
             groups = {"smoke", "login"}
     )
+    @Owner("Bokhno A.M.")
+    @Epic("Sauce Demo 1")
+    @Feature("Log in")
+    @Story("Log in with positive credential")
+    @Description("Проверка логина с позитивным логином и паролем")
+    @Severity(SeverityLevel.CRITICAL)
+    @Flaky
+    @Link(name = "Аналитика", url = "https://www.saucedemo.com/")
+    @TmsLink("SD-T01")
+    @Issue("BUG-01")
     public void checkLoginWithPositiveCred() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -29,6 +40,11 @@ public class LoginTest extends BaseTest {
             testName = "Пустой логин",
             groups = {"regression", "login"}
     )
+    @Owner("Bokhno A.M.")
+    @Epic("Sauce Demo 1")
+    @Feature("Log in")
+    @Story("Log in with empty user_name credential")
+    @Severity(SeverityLevel.CRITICAL)
     public void chekLoginWithEmptyUserName() {
         loginPage.open();
         loginPage.login("", "secret_sauce");
@@ -42,6 +58,11 @@ public class LoginTest extends BaseTest {
             testName = "Пустой пароль",
             groups = {"regression", "login"}
     )
+    @Owner("Bokhno A.M.")
+    @Epic("Sauce Demo 1")
+    @Feature("Log in")
+    @Story("Log in with empty password credential")
+    @Severity(SeverityLevel.CRITICAL)
     public void chekLoginWithEmptyPassword() {
         loginPage.open();
         loginPage.login("standard_user", "");
@@ -56,6 +77,11 @@ public class LoginTest extends BaseTest {
             testName = "Негативный логин",
             groups = {"smoke", "login"}
     )
+    @Owner("Bokhno A.M.")
+    @Epic("Sauce Demo 1")
+    @Feature("Log in")
+    @Story("Log in with negative credential")
+    @Severity(SeverityLevel.CRITICAL)
     public void chekLoginWithNegativeCred() {
         loginPage.open();
         loginPage.login("test", "test");
@@ -81,6 +107,11 @@ public class LoginTest extends BaseTest {
             testName = "Негативный параметризированный логин",
             groups = {"smoke", "login"}
     )
+    @Owner("Bokhno A.M.")
+    @Epic("Sauce Demo 1")
+    @Feature("Log in")
+    @Story("Negative parameterized login")
+    @Severity(SeverityLevel.NORMAL)
     public void checkFillOutWitEmptyCred(String first_name, String last_name, String zip, String expectedError) {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
