@@ -5,7 +5,7 @@
        parallel="tests">
 
     <listeners>
-        <listener class-name="tests.TestListener"/>
+        <listener class-name="listeners.TestListener"/>
     </listeners>
 
     <test name="Login">

@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -15,6 +16,16 @@ public class CartTest extends BaseTest {
             testName = "Проверка корзины",
             groups = {"smoke", "regression"}
     )
+    @Owner("Bokhno A.M.")
+    @Epic("Sauce Demo 1")
+    @Feature("Cart")
+    @Story("Add to cart")
+    @Description("В корзине сохраняются выбранные товары")
+    @Severity(SeverityLevel.CRITICAL)
+    @Flaky
+    @Link(name = "Аналитика", url = "https://www.saucedemo.com/")
+    @TmsLink("SD-T01")
+    @Issue("BUG-01")
     public void checkCart() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open();
@@ -33,6 +44,11 @@ public class CartTest extends BaseTest {
             testName = "Проверка удаления товаров в корзине",
             groups = {"regression"}
     )
+    @Owner("Bokhno A.M.")
+    @Epic("Sauce Demo 1")
+    @Feature("Cart")
+    @Story("Check remove item")
+    @Severity(SeverityLevel.CRITICAL)
     public void checkRemoveItem() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open();

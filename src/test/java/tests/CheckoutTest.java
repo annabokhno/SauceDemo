@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -14,6 +15,11 @@ public class CheckoutTest extends BaseTest {
             testName = "Положительная проверка Checkout формы",
             groups = {"smoke", "regression"}
     )
+    @Owner("Bokhno A.M.")
+    @Epic("Sauce Demo 1")
+    @Feature("Checkout")
+    @Story("Filling out the form with positive data")
+    @Severity(SeverityLevel.CRITICAL)
     public void checkFillOutWithPositiveCred() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -41,6 +47,11 @@ public class CheckoutTest extends BaseTest {
             testName = "Проверка Checkout формы с пустыми данными",
             groups = {"smoke", "regression"}
     )
+    @Owner("Bokhno A.M.")
+    @Epic("Sauce Demo 1")
+    @Feature("Checkout")
+    @Story("Filling out the form with empty data")
+    @Severity(SeverityLevel.CRITICAL)
     public void checkFillOutWitEmptyCred(String first_name, String last_name, String zip) {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -57,6 +68,11 @@ public class CheckoutTest extends BaseTest {
             testName = "Проверка кнопки Finish",
             groups = {"smoke", "regression"}
     )
+    @Owner("Bokhno A.M.")
+    @Epic("Sauce Demo 1")
+    @Feature("Checkout")
+    @Story("Testing the Finish button")
+    @Severity(SeverityLevel.CRITICAL)
     public void checkFinishButton() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
