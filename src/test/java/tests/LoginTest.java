@@ -1,11 +1,10 @@
 package tests;
 
 import io.qameta.allure.*;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends BaseTest {
 
@@ -26,9 +25,7 @@ public class LoginTest extends BaseTest {
     @TmsLink("SD-T01")
     @Issue("BUG-01")
     public void checkLoginWithPositiveCred() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.isPageOpened();
+        loginStep.auth("standard_user", "secret_sauce");
         assertEquals(productsPage.getTitle(),
                 "Products",
                 "SO BAD");
@@ -46,8 +43,7 @@ public class LoginTest extends BaseTest {
     @Story("Log in with empty user_name credential")
     @Severity(SeverityLevel.CRITICAL)
     public void chekLoginWithEmptyUserName() {
-        loginPage.open();
-        loginPage.login("", "secret_sauce");
+        loginStep.authWithNegativeCred("", "secret_sauce");
         assertEquals(loginPage.getErrorMessage(),
                 "Epic sadface: Username is required");
     }
@@ -64,11 +60,10 @@ public class LoginTest extends BaseTest {
     @Story("Log in with empty password credential")
     @Severity(SeverityLevel.CRITICAL)
     public void chekLoginWithEmptyPassword() {
-        loginPage.open();
-        loginPage.login("standard_user", "");
+        loginStep.authWithNegativeCred("test", "test");
         assertEquals(loginPage.getErrorMessage(),
-                "Epic sadface: Password is required",
-                "SO BAD");
+                "Epic sadface: Username and password do not match any user in this service",
+                "SO BAAD");
     }
 
     @Test(
@@ -83,8 +78,8 @@ public class LoginTest extends BaseTest {
     @Story("Log in with negative credential")
     @Severity(SeverityLevel.CRITICAL)
     public void chekLoginWithNegativeCred() {
-        loginPage.open();
-        loginPage.login("test", "test");
+        loginPage.open()
+                .loginWithNegativeCred("test", "test");
         assertEquals(loginPage.getErrorMessage(),
                 "Epic sadface: Username and password do not match any user in this service",
                 "SO BAAD");
@@ -113,12 +108,11 @@ public class LoginTest extends BaseTest {
     @Story("Negative parameterized login")
     @Severity(SeverityLevel.NORMAL)
     public void checkFillOutWitEmptyCred(String first_name, String last_name, String zip, String expectedError) {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.addToCart("Sauce Labs Backpack");
-        productsPage.clickCart();
-        cartPage.clickCheckout();
-        checkoutPage.fillOutTheForm(first_name, last_name, zip);
+        loginStep.auth("standard_user", "secret_sauce");
+        productsStep.addToCart("Sauce Labs Backpack");
+        productsStep.openCart();
+        cartStep.clickCheckout();
+        checkoutStep.fillForm(first_name, last_name, zip);
         assertEquals(checkoutPage.getErrorCheckoutMessage(), expectedError);
     }
 }

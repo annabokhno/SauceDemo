@@ -1,8 +1,8 @@
 package tests;
 
 import io.qameta.allure.*;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.assertEquals;
 
 public class End2EndTest extends BaseTest {
@@ -19,12 +19,11 @@ public class End2EndTest extends BaseTest {
     @Story("Happy path")
     @Severity(SeverityLevel.CRITICAL)
     public void endToEnd() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.addToCart("Sauce Labs Bolt T-Shirt");
-        productsPage.clickCart();
-        cartPage.clickCheckout();
-        checkoutPage.fillOutTheForm("Hanna", "Liasota", "12345");
+        loginStep.auth("standard_user", "secret_sauce");
+        productsStep.addToCart("Sauce Labs Bolt T-Shirt");
+        productsStep.openCart();
+        cartStep.clickCheckout();
+        checkoutStep.fillForm("Hanna", "Liasota", "12345");
         checkoutOverviewPage.clickFinishButton();
         assertEquals(completePage.getTitleCompletePage(), "Checkout: Complete!");
     }

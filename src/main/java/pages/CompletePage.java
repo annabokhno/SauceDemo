@@ -11,6 +11,16 @@ public class CompletePage extends BasePage {
         super(driver);
     }
 
+    @Override
+    public CompletePage isPageOpened() {
+        return this;
+    }
+
+    @Override
+    public CompletePage open() {
+        throw new UnsupportedOperationException("CompletePage cannot be opened directly");
+    }
+
     public String getTitleCompletePage() {
         return driver.findElement(TITLE_COMPLETE_PAGE).getText();
     }

@@ -10,6 +10,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
+import steps.CartStep;
+import steps.CheckoutStep;
+import steps.LoginStep;
+import steps.ProductsStep;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -25,6 +29,10 @@ public class BaseTest {
     CompletePage completePage;
     LoginPage loginPage;
     ProductsPage productsPage;
+    LoginStep loginStep;
+    ProductsStep productsStep;
+    CheckoutStep checkoutStep;
+    CartStep cartStep;
 
 
     @BeforeMethod(alwaysRun = true, description = "Настройка драйвера")
@@ -53,6 +61,10 @@ public class BaseTest {
         completePage = new CompletePage(driver);
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
+        loginStep = new LoginStep(driver);
+        productsStep = new ProductsStep(driver);
+        checkoutStep = new CheckoutStep(driver);
+        cartStep = new CartStep(driver);
     }
 
     private static @NonNull ChromeOptions getChromeOptions() {

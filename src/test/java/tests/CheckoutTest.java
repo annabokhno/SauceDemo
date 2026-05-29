@@ -1,9 +1,9 @@
 package tests;
 
 import io.qameta.allure.*;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -21,12 +21,11 @@ public class CheckoutTest extends BaseTest {
     @Story("Filling out the form with positive data")
     @Severity(SeverityLevel.CRITICAL)
     public void checkFillOutWithPositiveCred() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.addToCart("Sauce Labs Backpack");
-        productsPage.clickCart();
-        cartPage.clickCheckout();
-        checkoutPage.fillOutTheForm("Hanna", "Liasota", "12345");
+        loginStep.auth("standard_user", "secret_sauce");
+        productsStep.addToCart("Sauce Labs Backpack");
+        productsStep.openCart();
+        cartStep.clickCheckout();
+        checkoutStep.fillForm("Hanna", "Liasota", "12345");
         assertEquals(checkoutOverviewPage.getTitleOverview(), "Checkout: Overview", "SO BAD");
     }
 
@@ -53,12 +52,11 @@ public class CheckoutTest extends BaseTest {
     @Story("Filling out the form with empty data")
     @Severity(SeverityLevel.CRITICAL)
     public void checkFillOutWitEmptyCred(String first_name, String last_name, String zip) {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.addToCart("Sauce Labs Backpack");
-        productsPage.clickCart();
-        cartPage.clickCheckout();
-        checkoutPage.fillOutTheForm("", "", "");
+        loginStep.auth("standard_user", "secret_sauce");
+        productsStep.addToCart("Sauce Labs Backpack");
+        productsStep.openCart();
+        cartStep.clickCheckout();
+        checkoutStep.fillForm(first_name, last_name, zip);
         assertEquals(checkoutPage.getErrorCheckoutMessage(), "Error: First Name is required");
     }
 
@@ -74,12 +72,11 @@ public class CheckoutTest extends BaseTest {
     @Story("Testing the Finish button")
     @Severity(SeverityLevel.CRITICAL)
     public void checkFinishButton() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.addToCart("Sauce Labs Backpack");
-        productsPage.clickCart();
-        cartPage.clickCheckout();
-        checkoutPage.fillOutTheForm("Hanna", "Liasota", "12345");
+        loginStep.auth("standard_user", "secret_sauce");
+        productsStep.addToCart("Sauce Labs Backpack");
+        productsStep.openCart();
+        cartStep.clickCheckout();
+        checkoutStep.fillForm("Hanna", "Liasota", "12345");
         assertTrue(checkoutOverviewPage.getSummaryInfo().contains("Payment Information"));
         checkoutOverviewPage.clickFinishButton();
     }

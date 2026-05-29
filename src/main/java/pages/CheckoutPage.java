@@ -3,6 +3,7 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CheckoutPage extends BasePage {
 
@@ -16,16 +17,29 @@ public class CheckoutPage extends BasePage {
         super(driver);
     }
 
-    public void openCheckOut() {
+    @Override
+    public CheckoutPage isPageOpened() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FIRSTNAME_FIELD));
+        return this;
+    }
+
+    @Override
+    public CheckoutPage open() {
+        throw new UnsupportedOperationException("CheckoutPage cannot be opened directly");
+    }
+
+    public CheckoutPage openCheckOut() {
         driver.get(BASE_URL + "/checkout-step-one.html");
+        return this;
     }
 
     @Step("Заполнение формы Checkout: '{first_name}','{last_name}' и zip код '{zip}'")
-    public void fillOutTheForm(String first_name, String last_name, String zip) {
+    public CheckoutPage fillOutTheForm(String first_name, String last_name, String zip) {
         driver.findElement(FIRSTNAME_FIELD).sendKeys(first_name);
         driver.findElement(LASTNAME_FIELD).sendKeys(last_name);
         driver.findElement(ZIP_CODE_FIELD).sendKeys(zip);
         driver.findElement(CONTINUE_BUTTON).click();
+        return this;
     }
 
     public String getErrorCheckoutMessage() {

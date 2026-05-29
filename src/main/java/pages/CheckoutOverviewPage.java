@@ -3,6 +3,7 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CheckoutOverviewPage extends BasePage {
 
@@ -12,6 +13,17 @@ public class CheckoutOverviewPage extends BasePage {
 
     public CheckoutOverviewPage(WebDriver driver) {
         super(driver);
+    }
+
+    @Override
+    public CheckoutOverviewPage isPageOpened() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_OVERVIEW));
+        return this;
+    }
+
+    @Override
+    public CheckoutOverviewPage open() {
+        throw new UnsupportedOperationException("CheckoutOverviewPage cannot be opened directly");
     }
 
     public void openCheckoutOverview() {
@@ -27,7 +39,8 @@ public class CheckoutOverviewPage extends BasePage {
     }
 
     @Step("Нажатие на кнопку Finish")
-    public void clickFinishButton() {
+    public CompletePage clickFinishButton() {
         driver.findElement(FINISH_BUTTON).click();
+        return new CompletePage(driver);
     }
 }

@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +18,31 @@ public class CartPage extends BasePage {
     private final String PRODUCT_PATTERN =
             "//*[text()='%s']";
 
+//    @Override
+//    public CartPage isPageOpened(){
+//        driver.get()
+//    }
+
+//    @Override
+//    public CartPage open(){
+//        driver.get()
+//    }
+
     public CartPage(WebDriver driver) {
         super(driver);
     }
 
+    @Override
+    public CartPage isPageOpened() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_CART));
+        return this;
+    }
+
     @Step("Открытие страницы корзины")
-    public void open() {
+    @Override
+    public CartPage open() {
         driver.get(BASE_URL + "/cart.html");
+        return this;
     }
 
     public String getTitleCart() {
@@ -31,13 +50,15 @@ public class CartPage extends BasePage {
     }
 
     @Step("Удаление товара '{product}' из корзины")
-    public void removeFromCart(String product) {
+    public CartPage removeFromCart(String product) {
         driver.findElement(By.xpath(String.format(REMOVE_FROM_CART_PATTERN, product))).click();
+        return this;
     }
 
     @Step("Нажатие кнопки Checkout")
-    public void clickCheckout() {
+    public CheckoutPage clickCheckout() {
         driver.findElement(CHECKOUT).click();
+        return new CheckoutPage(driver);
     }
 
     @Step("Получение названия товара '{product}'")

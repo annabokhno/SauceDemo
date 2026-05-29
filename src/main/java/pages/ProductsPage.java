@@ -16,25 +16,31 @@ public class ProductsPage extends BasePage {
         super(driver);
     }
 
-    public void open() {
+    @Override
+    public ProductsPage open() {
         driver.get(BASE_URL + "/inventory.html");
+        return this;
     }
 
     public String getTitle() {
         return driver.findElement(TITLE).getText();
     }
 
-    public void isPageOpened() {
+    @Override
+    public ProductsPage isPageOpened() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE));
+        return this;
     }
 
     @Step("Добавление в корзину товара с именем: '{product}'")
-    public void addToCart(String product) {
+    public ProductsPage addToCart(String product) {
         driver.findElement(By.xpath(String.format(ADD_TO_CART_PATTERN, product))).click();
+        return this;
     }
 
     @Step("Нажатие на кнопку Корзина")
-    public void clickCart() {
+    public CartPage clickCart() {
         driver.findElement(CART).click();
+        return new CartPage(driver);
     }
 }

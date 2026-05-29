@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class BasePage {
+public abstract class BasePage {
 
     protected WebDriver driver;
     WebDriverWait wait;
@@ -30,4 +30,8 @@ public class BasePage {
                 ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete")
         );
     }
+
+    public abstract BasePage isPageOpened();
+
+    public abstract BasePage open();
 }
