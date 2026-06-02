@@ -1,10 +1,12 @@
 package pages;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+@Log4j2
 public class CheckoutOverviewPage extends BasePage {
 
     private final By TITLE_OVERVIEW = By.xpath("//span[text() = 'Checkout: Overview']");
@@ -17,12 +19,14 @@ public class CheckoutOverviewPage extends BasePage {
 
     @Override
     public CheckoutOverviewPage isPageOpened() {
+        log.info("Checking that Checkout Overview Page is opened");
         wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE_OVERVIEW));
         return this;
     }
 
     @Override
     public CheckoutOverviewPage open() {
+        log.warn("Attempted to open CheckoutOverviewPage directly – not allowed");
         throw new UnsupportedOperationException("CheckoutOverviewPage cannot be opened directly");
     }
 
@@ -40,6 +44,7 @@ public class CheckoutOverviewPage extends BasePage {
 
     @Step("Нажатие на кнопку Finish")
     public CompletePage clickFinishButton() {
+        log.info("Clicking Finish button on Checkout Overview Page");
         driver.findElement(FINISH_BUTTON).click();
         return new CompletePage(driver);
     }

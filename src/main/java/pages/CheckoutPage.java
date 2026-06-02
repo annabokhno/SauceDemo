@@ -1,10 +1,12 @@
 package pages;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+@Log4j2
 public class CheckoutPage extends BasePage {
 
     private final By FIRSTNAME_FIELD = By.id("first-name");
@@ -19,16 +21,19 @@ public class CheckoutPage extends BasePage {
 
     @Override
     public CheckoutPage isPageOpened() {
+        log.info("Checking that Checkout Page is opened");
         wait.until(ExpectedConditions.visibilityOfElementLocated(FIRSTNAME_FIELD));
         return this;
     }
 
     @Override
     public CheckoutPage open() {
+        log.warn("Attempted to open Checkout Page directly");
         throw new UnsupportedOperationException("CheckoutPage cannot be opened directly");
     }
 
     public CheckoutPage openCheckOut() {
+        log.info("Opening Checkout Page");
         driver.get(BASE_URL + "/checkout-step-one.html");
         return this;
     }
