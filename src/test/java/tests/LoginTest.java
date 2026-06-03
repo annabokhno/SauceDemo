@@ -108,7 +108,7 @@ public class LoginTest extends BaseTest {
     @Story("Negative parameterized login")
     @Severity(SeverityLevel.NORMAL)
     public void checkFillOutWitEmptyCred(String first_name, String last_name, String zip, String expectedError) {
-        loginStep.auth("standard_user", "secret_sauce");
+        loginStep.auth(user, password);
         productsStep.addToCart("Sauce Labs Backpack");
         productsStep.openCart();
         cartStep.clickCheckout();

@@ -35,6 +35,8 @@ public class BaseTest {
     CheckoutStep checkoutStep;
     CartStep cartStep;
 
+    String user = System.getProperty("user");
+    String password = System.getProperty("password");
 
     @BeforeMethod(alwaysRun = true, description = "Настройка драйвера")
     @Parameters({"browser"})
