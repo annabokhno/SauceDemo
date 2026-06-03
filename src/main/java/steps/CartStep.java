@@ -1,8 +1,10 @@
 package steps;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import pages.CartPage;
 
+@Log4j2
 public class CartStep {
 
     WebDriver driver;
@@ -14,6 +16,7 @@ public class CartStep {
     }
 
     public void clickCheckout() {
+        log.info("Clicking Checkout button in Cart");
         cartPage.clickCheckout();
     }
 }

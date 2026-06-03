@@ -1,9 +1,11 @@
 package steps;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 import pages.ProductsPage;
 
+@Log4j2
 public class LoginStep {
 
     WebDriver driver;
@@ -17,18 +19,21 @@ public class LoginStep {
     }
 
     public void auth(String user, String password) {
+        log.info("Authenticating with username '{}'", user);
         loginPage.open()
                 .isPageOpened()
                 .login(user, password);
     }
 
     public void authWithStandardUser() {
+        log.info("Authenticating with standard user");
         loginPage.open()
                 .isPageOpened()
                 .login("standard_user", "secret_sauce");
     }
 
     public void authWithNegativeCred(String user, String password) {
+        log.info("Attempting login with negative credentials for user '{}'", user);
         loginPage.open()
                 .isPageOpened()
                 .loginWithNegativeCred(user, password);
