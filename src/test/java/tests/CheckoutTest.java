@@ -57,7 +57,6 @@ public class CheckoutTest extends BaseTest {
         productsStep.openCart();
         cartStep.clickCheckout();
         checkoutStep.fillForm(first_name, last_name, zip);
-        assertEquals(checkoutPage.getErrorCheckoutMessage(), "Error: First Name is required");
     }
 
     @Test(

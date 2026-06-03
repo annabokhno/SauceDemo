@@ -35,4 +35,8 @@ public class CheckoutStep {
             log.warn("Checkout error mismatch!");
         }
     }
+
+    public CheckoutPage getCheckoutPage() {
+        return checkoutPage;
+    }
 }
