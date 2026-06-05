@@ -39,7 +39,9 @@ public class ProductsPage extends BasePage {
     @Step("Добавление в корзину товара с именем: '{product}'")
     public ProductsPage addToCart(String product) {
         log.info("Adding product '{}' to cart", product);
-        driver.findElement(By.xpath(String.format(ADD_TO_CART_PATTERN, product))).click();
+        String dataTest = "add-to-cart-" + product.toLowerCase().replace(" ", "-");
+        By addButton = By.cssSelector("[data-test='" + dataTest + "']");
+        wait.until(ExpectedConditions.elementToBeClickable(addButton)).click();
         return this;
     }
 
