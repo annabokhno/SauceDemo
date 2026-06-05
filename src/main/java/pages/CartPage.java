@@ -52,8 +52,8 @@ public class CartPage extends BasePage {
 
     @Step("Нажатие кнопки Checkout")
     public CheckoutPage clickCheckout() {
-        log.info("Clicking Checkout button");
-        driver.findElement(CHECKOUT).click();
+        By checkoutBtn = By.id("checkout");
+        wait.until(ExpectedConditions.elementToBeClickable(checkoutBtn)).click();
         return new CheckoutPage(driver);
     }
 

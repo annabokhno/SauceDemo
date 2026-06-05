@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 @Log4j2
 public class ProductsPage extends BasePage {
 
-    private final By TITLE = By.cssSelector("[data-test = title]");
+    private final By TITLE = By.cssSelector("[data-test='title']");
     private final By CART = By.cssSelector("[data-test = shopping-cart-link]");
     private final String ADD_TO_CART_PATTERN =
             "//*[text()='%s']//ancestor::div[@class='inventory_item']//button[text()='Add to cart']";
@@ -38,10 +38,10 @@ public class ProductsPage extends BasePage {
 
     @Step("Добавление в корзину товара с именем: '{product}'")
     public ProductsPage addToCart(String product) {
-        log.info("Adding product '{}' to cart", product);
         String dataTest = "add-to-cart-" + product.toLowerCase().replace(" ", "-");
-        By addButton = By.cssSelector("[data-test='" + dataTest + "']");
-        wait.until(ExpectedConditions.elementToBeClickable(addButton)).click();
+        By button = By.cssSelector("[data-test='" + dataTest + "']");
+        wait.until(ExpectedConditions.elementToBeClickable(button)).click();
+        log.info("Added product '{}' to cart", product);
         return this;
     }
 

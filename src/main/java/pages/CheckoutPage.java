@@ -40,14 +40,15 @@ public class CheckoutPage extends BasePage {
 
     @Step("Заполнение формы Checkout: '{first_name}','{last_name}' и zip код '{zip}'")
     public CheckoutPage fillOutTheForm(String first_name, String last_name, String zip) {
-        driver.findElement(FIRSTNAME_FIELD).sendKeys(first_name);
-        driver.findElement(LASTNAME_FIELD).sendKeys(last_name);
-        driver.findElement(ZIP_CODE_FIELD).sendKeys(zip);
-        driver.findElement(CONTINUE_BUTTON).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FIRSTNAME_FIELD)).sendKeys(first_name);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(LASTNAME_FIELD)).sendKeys(last_name);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ZIP_CODE_FIELD)).sendKeys(zip);
+        wait.until(ExpectedConditions.elementToBeClickable(CONTINUE_BUTTON)).click();
         return this;
     }
 
     public String getErrorCheckoutMessage() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ERROR_CHECKOUT_MESSAGE));
         return driver.findElement(ERROR_CHECKOUT_MESSAGE).getText();
     }
 }
