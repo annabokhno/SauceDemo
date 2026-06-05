@@ -27,7 +27,7 @@ public class LoginTest extends BaseTest {
     public void checkLoginWithPositiveCred() {
         loginStep.auth(user, password);
         assertEquals(productsPage.getTitle(),
-              4  "Products",
+               "Products",
                 "SO BAD");
     }
 
