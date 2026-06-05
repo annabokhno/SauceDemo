@@ -25,13 +25,6 @@ public class LoginStep {
                 .login(user, password);
     }
 
-    public void authWithStandardUser() {
-        log.info("Authenticating with standard user");
-        loginPage.open()
-                .isPageOpened()
-                .login("standard_user", "secret_sauce");
-    }
-
     public void authWithNegativeCred(String user, String password) {
         log.info("Attempting login with negative credentials for user '{}'", user);
         loginPage.open()

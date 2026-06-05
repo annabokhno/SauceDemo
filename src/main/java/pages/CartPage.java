@@ -63,12 +63,12 @@ public class CartPage extends BasePage {
         return driver.findElement(By.xpath(String.format(PRODUCT_PATTERN, product))).getText();
     }
 
-    @Step("Проверка, что товар '{product}' находится в корзине")
     public boolean isProductInCart(String product) {
         log.info("Checking product '{}' is present in cart", product);
-        return driver.findElement(
+
+        return driver.findElements(
                 By.xpath(String.format("//*[@class='cart_item']//*[text()='%s']", product))
-        ).isDisplayed();
+        ).size() > 0;
     }
 
     @Step("Получение названия товара из корзины по индексу {index}")

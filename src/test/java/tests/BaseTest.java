@@ -15,6 +15,7 @@ import steps.CartStep;
 import steps.CheckoutStep;
 import steps.LoginStep;
 import steps.ProductsStep;
+import utils.PropertyReader;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -35,8 +36,8 @@ public class BaseTest {
     CheckoutStep checkoutStep;
     CartStep cartStep;
 
-    String user = System.getProperty("user");
-    String password = System.getProperty("password");
+    String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    String password = System.getProperty("password",PropertyReader.getProperty("password"));
 
     @BeforeMethod(alwaysRun = true, description = "Настройка драйвера")
     @Parameters({"browser"})

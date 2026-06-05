@@ -25,7 +25,7 @@ public class CartTest extends BaseTest {
     @Issue("BUG-01")
     public void checkCart() {
         SoftAssert softAssert = new SoftAssert();
-        loginStep.auth("standard_user", "secret_sauce");
+        loginStep.auth(user, password);
         productsStep.shouldBeOpened();
         productsStep.addToCart("Sauce Labs Backpack");
         productsStep.addToCart("Sauce Labs Bike Light");
@@ -48,13 +48,17 @@ public class CartTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void checkRemoveItem() {
         SoftAssert softAssert = new SoftAssert();
-        loginStep.auth("standard_user", "secret_sauce");
+        loginStep.auth(user, password);
         productsStep.addToCart("Sauce Labs Backpack");
         productsStep.addToCart("Sauce Labs Bike Light");
         productsStep.openCart();
         cartPage.removeFromCart("Sauce Labs Backpack");
-        softAssert.assertEquals(driver.findElements(By.xpath("//*[text()='Sauce Labs Backpack']")).size(), 0);
-        softAssert.assertEquals(driver.findElements(By.xpath("//*[text()='Sauce Labs Bike Light']")).size(), 0);
+        softAssert.assertFalse(
+                cartPage.isProductInCart("Sauce Labs Backpack"),
+                "Backpack should be removed from cart");
+        softAssert.assertTrue(
+                cartPage.isProductInCart("Sauce Labs Bike Light"),
+                "Bike Light should still be in cart");
         softAssert.assertAll();
     }
 
@@ -62,7 +66,7 @@ public class CartTest extends BaseTest {
     public void checkCartTwo() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open()
-                .login("standard_user", "secret_sauce")
+                .login(user, password)
                 .addToCart("Sauce Labs Backpack")
                 .addToCart("Sauce Labs Bike Light")
                 .clickCart();

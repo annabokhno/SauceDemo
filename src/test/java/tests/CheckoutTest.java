@@ -21,7 +21,7 @@ public class CheckoutTest extends BaseTest {
     @Story("Filling out the form with positive data")
     @Severity(SeverityLevel.CRITICAL)
     public void checkFillOutWithPositiveCred() {
-        loginStep.auth("standard_user", "secret_sauce");
+        loginStep.auth(user, password);
         productsStep.addToCart("Sauce Labs Backpack");
         productsStep.openCart();
         cartStep.clickCheckout();
@@ -52,7 +52,7 @@ public class CheckoutTest extends BaseTest {
     @Story("Filling out the form with empty data")
     @Severity(SeverityLevel.CRITICAL)
     public void checkFillOutWitEmptyCred(String first_name, String last_name, String zip) {
-        loginStep.auth("standard_user", "secret_sauce");
+        loginStep.auth(user, password);
         productsStep.addToCart("Sauce Labs Backpack");
         productsStep.openCart();
         cartStep.clickCheckout();
@@ -71,7 +71,7 @@ public class CheckoutTest extends BaseTest {
     @Story("Testing the Finish button")
     @Severity(SeverityLevel.CRITICAL)
     public void checkFinishButton() {
-        loginStep.auth("standard_user", "secret_sauce");
+        loginStep.auth(user, password);
         productsStep.addToCart("Sauce Labs Backpack");
         productsStep.openCart();
         cartStep.clickCheckout();

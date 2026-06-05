@@ -19,7 +19,7 @@ public class End2EndTest extends BaseTest {
     @Story("Happy path")
     @Severity(SeverityLevel.CRITICAL)
     public void endToEnd() {
-        loginStep.auth("standard_user", "secret_sauce");
+        loginStep.auth(user, password);
         productsStep.addToCart("Sauce Labs Bolt T-Shirt");
         productsStep.openCart();
         cartStep.clickCheckout();

@@ -13,8 +13,8 @@ public class LocatorsTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void checkCart() {
         driver.get("https://www.saucedemo.com/");
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.id("user-name")).sendKeys(user);
+        driver.findElement(By.id("password")).sendKeys(password);
         driver.findElement(By.id("login-button")).click();
         driver.findElement(By.tagName("button"));
         driver.findElement(By.name("add-to-cart-sauce-labs-backpack"));

@@ -25,7 +25,7 @@ public class LoginTest extends BaseTest {
     @TmsLink("SD-T01")
     @Issue("BUG-01")
     public void checkLoginWithPositiveCred() {
-        loginStep.auth("standard_user", "secret_sauce");
+        loginStep.auth(user, password);
         assertEquals(productsPage.getTitle(),
                 "Products",
                 "SO BAD");
@@ -43,7 +43,7 @@ public class LoginTest extends BaseTest {
     @Story("Log in with empty user_name credential")
     @Severity(SeverityLevel.CRITICAL)
     public void chekLoginWithEmptyUserName() {
-        loginStep.authWithNegativeCred("", "secret_sauce");
+        loginStep.authWithNegativeCred("", password);
         assertEquals(loginPage.getErrorMessage(),
                 "Epic sadface: Username is required");
     }
@@ -60,9 +60,9 @@ public class LoginTest extends BaseTest {
     @Story("Log in with empty password credential")
     @Severity(SeverityLevel.CRITICAL)
     public void chekLoginWithEmptyPassword() {
-        loginStep.authWithNegativeCred("test", "test");
+        loginStep.authWithNegativeCred(user, "");
         assertEquals(loginPage.getErrorMessage(),
-                "Epic sadface: Username and password do not match any user in this service",
+                "Epic sadface: Password is required",
                 "SO BAAD");
     }
 
