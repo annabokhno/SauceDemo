@@ -31,6 +31,7 @@ public class LoginTest extends BaseTest {
                 "SO BAD");
     }
 
+
     @Test(
             priority = 2,
             description = "Проверка логина с пустым логином",
